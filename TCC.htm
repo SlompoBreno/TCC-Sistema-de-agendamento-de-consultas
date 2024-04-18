@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento e Informações de Consultas</title>
+    <!-- Adicione os links para o Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+ <style>
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody+tbody {
+            border-top: 2px solid #dee2e6;
+        }
+    </style>
+
+<body class="p-3">
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-1">
+                <!-- Espaço lateral esquerdo vazio -->
+            </div>
+            <div class="col-md-10">
+                <h2 class="text-center mb-4">Agendamento e Informações de Consultas</h2>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="agendamento-tab" data-toggle="tab" href="#agendamento" role="tab" aria-controls="agendamento" aria-selected="false">Agendamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="consulta-tab" data-toggle="tab" href="#consulta" role="tab" aria-controls="consulta" aria-selected="false">Informações sobre Consultas</a>
+                    </li>
+                </ul>
+                <div class="tab-content my-4" id="myTabContent">
+                    <div class="tab-pane fade show active" id="agendamento" role="tabpanel" aria-labelledby="agendamento-tab">
+                        <form>
+                            <div class="form-group">
+                                    <label for="nomePaciente">Nome do Paciente:</label>
+                                    <input type="text" class="form-control" id="nomePaciente" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="area">Área de Atendimento:</label>
+                                <select class="form-control" id="area" onchange="CarregaMedico()">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="medico">Médico:</label>
+                                <select class="form-control" id="medico" onchange="CarregaData()">
+                                  <option value="">Selecione primeiro a área</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="data">Data da Consulta:</label>
+                                <select class="form-control" id="data" onchange="CarregaHora()">
+                                  <option value="">Selecione primeiro o médico</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hora">Hora da Consulta:</label>
+                                <select class="form-control" id="hora">
+                                  <option value="">Selecione primeiro a data</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-primary mt-3" onclick="AgendarConsulta()">Agendar Consulta</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="consulta" role="tabpanel" aria-labelledby="consulta-tab">
+                        <!-- Campos de filtro -->
+                        <div class="form-row mt-3">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Filtrar por Paciente / CPF / Médico / Área / Data" id="filtroGeral">
+                            </div>
+                        </div>
+
+                        <!-- Tabela de consulta aqui -->
+                        <table class="table table-striped table-bordered table-hover mt-3">
+                            <thead>
+                                <tr>
+                                    <th class="text-center col-md-2">Paciente / CPF</th>
+                                    <th class="text-center col-md-2">Médico</th>
+                                    <th class="text-center col-md-2">Área</th>
+                                    <th class="text-center col-md-2">Data / Hora</th>
+                                    <th class="text-center col-md-2">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <!-- Espaço lateral direito vazio -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicione os links para os scripts do Bootstrap e jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="js/TCC.js"></script>
+</body>
+
+</html>
